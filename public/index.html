@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html ng-app="todoApp">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Todo App</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="js/controllers/main.js"></script>
+	<script src="js/services/todos.js"></script>
+	<script src="js/core.js"></script>
+
+</head>
+
+<body ng-controller="mainController">
+
+	<div class="container">
+		<div class="page-header text-center">
+			<h1>
+				My Todo List
+			</h1>
+			<p>There are {{ todos.length }} items in your list!</p>
+		</div>
+		<div class="alert alert-success" ng-show="myVar" >
+			<a href="" class="close" data-dismiss="alert" aria-label="close" ng-click="closemsg()">&times;</a>
+		    <strong>Success!</strong>{{ succesmsg }}
+		 </div>
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				
+				<form >
+					<div class="alert alert-danger" ng-show="errv">
+				    <a href="" class="close" data-dismiss="alert" aria-label="close" ng-click="closemsgx()" >&times;</a>
+				    <strong>Error!</strong> {{ error }}
+				  </div>
+					 
+					<div class="form-group">
+						<input type="text" class="form-control input-lg text-center" placeholder="What do you need to do?" ng-model="formData.text">
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+					</div>
+					<p class="text-center" ng-show="loading">
+						<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+				</form>
+			</div>
+		</div>
+
+		<div id="todo-list" class="form-group">
+			<div class="col-sm-8 col-sm-offset-2 text-center"> 
+				<div class="form-group sort">
+			      <label class="control-label col-xs-4" for="email">Sort Todo list:</label>
+			      <div class="col-xs-4">
+			        <p class="form-control-static">
+				        <select class="form-control" id="ex3" ng-model="sortColumn">
+							<option value="text">Ascending Order</option>
+							<option value="-text">Descending Order</option>
+						</select>
+					</p>
+			      </div>
+			    </div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Todo</th>
+							<th>Date Created</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="success" ng-repeat="todo in todos | orderBy:sortColumn">
+							<td ng-model="text.tx">{{ todo.text }}</td>
+							<td>{{ todo.createddate  | date:'dd/MM/yyyy HH:mm:ss'}}</td>
+							<td>
+								<button  class="btn btn-default" ng-click="deleteTodo(todo._id)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>	
+			</div>
+		</div>
+	</div>
+</body>
+</html>

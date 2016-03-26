@@ -1,0 +1,28 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 50px;
+}
+
+#todo-list {
+  margin-bottom: 30px;
+}
+
+#todo-form {
+  margin-bottom: 50px;
+}
+
+.error {
+  color: red;
+}
+
+th {
+    text-align: center;
+    margin-left: 4px;
+}
+
+.sort {
+    padding-bottom: 75px;
+}
