@@ -1,5 +1,5 @@
 {
-  "name": "abx-developer-test",
+  "name": "todo-app",
   "version": "0.0.0",
   "description": "A simple TODO app",
   "main": "server.js",
